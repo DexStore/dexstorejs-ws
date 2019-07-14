@@ -1,7 +1,7 @@
 {
-  "name": "bitsharesjs-ws",
+  "name": "dexstorejs-ws",
   "version": "3.1.0",
-  "description": "Pure JavaScript BitShares websocket interface for node.js and browsers.",
+  "description": "Pure JavaScript DexStore websocket interface for node.js and browsers.",
   "browser": {
     "ws": false
   },
@@ -18,14 +18,14 @@
     "build": "babel src -d lib",
     "postbuild": "npm run browserify",
     "prepublish": "npm run build",
-    "browserify": "cross-env NODE_ENV=production browserify lib/index.js --standalone bitshares_ws -o build/bitsharesjs-ws.js -d",
-    "postbrowserify": "cross-env NODE_ENV=production minify build/bitsharesjs-ws.js --mangle --outFile build/bitsharesjs-ws.min.js"
+    "browserify": "cross-env NODE_ENV=production browserify lib/index.js --standalone dexstore_ws -o build/dexstorejs-ws.js -d",
+    "postbrowserify": "cross-env NODE_ENV=production minify build/dexstorejs-ws.js --mangle --outFile build/dexstorejs-ws.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitshares/bitsharesjs-ws.git"
+    "url": "git+https://github.com/DexStore/dexstorejs-ws.git"
   },
-  "author": "BitShares UI Worker <ui-dev@bitshares.org>",
+  "author": "DexStore UI Worker <ui-dev@dexstore.org>",
   "contributors": [
     "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
     "James Calfee <james@jcalfee.info> (https://github.com/jcalfee/)",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bitshares/bitsharesjs-ws/issues"
+    "url": "https://github.com/DexStore/dexstorejs-ws/issues"
   },
   "engines": {
     "node": ">= 10.0.0"

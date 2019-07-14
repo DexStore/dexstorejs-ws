@@ -1,33 +1,15 @@
 var config = {
-  core_asset: "CORE",
-  address_prefix: "GPH",
+  core_asset: "DST",
+  address_prefix: "DST",
   expire_in_secs: 15,
   expire_in_secs_proposal: 24 * 60 * 60,
   review_in_secs_committee: 24 * 60 * 60,
   networks: {
-    BitShares: {
-      core_asset: "BTS",
-      address_prefix: "BTS",
+    DST: {
+      core_asset: "DST",
+      address_prefix: "DST",
       chain_id:
-        "4018d7844c78f6a6c41c6a552b898022310fc5dec06da467ee7905a8dad512c8"
-    },
-    Muse: {
-      core_asset: "MUSE",
-      address_prefix: "MUSE",
-      chain_id:
-        "45ad2d3f9ef92a49b55c2227eb06123f613bb35dd08bd876f2aea21925a67a67"
-    },
-    Test: {
-      core_asset: "TEST",
-      address_prefix: "TEST",
-      chain_id:
-        "39f5e2ede1f8bc1a3a54a7914414e3779e33193f1f5693510e73cb7a87617447"
-    },
-    Obelisk: {
-      core_asset: "GOV",
-      address_prefix: "FEW",
-      chain_id:
-        "1cfde7c388b9e8ac06462d68aadbd966b58f88797637d9af805b4560b0e9661e"
+        "2b4bcdbc9cd28f1517c5a44e0125780b574f15f4d52ccfd4c6675ef9a3a5c1a8"
     }
   },
 
@@ -51,15 +33,15 @@ var config = {
   },
 
   reset: () => {
-    config.core_asset = "CORE";
-    config.address_prefix = "GPH";
+    config.core_asset = "DST";
+    config.address_prefix = "DST";
     config.expire_in_secs = 15;
     config.expire_in_secs_proposal = 24 * 60 * 60;
 
     console.log("Chain config reset");
   },
 
-  setPrefix: (prefix = "GPH") => (config.address_prefix = prefix)
+  setPrefix: (prefix = "DST") => (config.address_prefix = prefix)
 };
 
 export default config;
