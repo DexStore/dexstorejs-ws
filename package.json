@@ -1,6 +1,6 @@
 {
   "name": "dexstorejs-ws",
-  "version": "3.1.0",
+  "version": "1.1.0",
   "description": "Pure JavaScript DexStore websocket interface for node.js and browsers.",
   "browser": {
     "ws": false
@@ -26,11 +26,7 @@
     "url": "git+https://github.com/DexStore/dexstorejs-ws.git"
   },
   "author": "DexStore UI Worker <ui-dev@dexstore.org>",
-  "contributors": [
-    "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
-    "James Calfee <james@jcalfee.info> (https://github.com/jcalfee/)",
-    "scientistnik"
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DexStore/dexstorejs-ws/issues"
