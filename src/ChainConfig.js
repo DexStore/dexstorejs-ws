@@ -1,15 +1,19 @@
 var config = {
-  core_asset: "DST",
-  address_prefix: "DST",
+  core_asset: "CORE",
+  address_prefix: "GPH",
   expire_in_secs: 15,
   expire_in_secs_proposal: 24 * 60 * 60,
   review_in_secs_committee: 24 * 60 * 60,
   networks: {
-    DST: {
+    Dexstore: {
       core_asset: "DST",
       address_prefix: "DST",
-      chain_id:
-        "2b4bcdbc9cd28f1517c5a44e0125780b574f15f4d52ccfd4c6675ef9a3a5c1a8"
+      chain_id: "431228050e6276856b1a40c0b5dcdb12caa6ace11939cab514af31aa91a0f5a0"
+    },
+    TestDexstore: {
+      core_asset: "DST",
+      address_prefix: "DST",
+      chain_id: "8adf1771be501c58aff41c390db4dfcf3d0147d1841b40ad020cbb61716885c4"
     }
   },
 
@@ -33,15 +37,15 @@ var config = {
   },
 
   reset: () => {
-    config.core_asset = "DST";
-    config.address_prefix = "DST";
+    config.core_asset = "CORE";
+    config.address_prefix = "GPH";
     config.expire_in_secs = 15;
     config.expire_in_secs_proposal = 24 * 60 * 60;
 
     console.log("Chain config reset");
   },
 
-  setPrefix: (prefix = "DST") => (config.address_prefix = prefix)
+  setPrefix: (prefix = "GPH") => (config.address_prefix = prefix)
 };
 
 export default config;

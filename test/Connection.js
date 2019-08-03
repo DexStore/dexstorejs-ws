@@ -2,7 +2,7 @@ import assert from "assert";
 import {Apis} from "../lib";
 
 var coreAsset;
-var default_api = "ws://163.172.142.178:8839";
+var default_api = "wss://eu.nodes.bitshares.ws";
 
 describe("Connection", () => {
 
@@ -16,7 +16,7 @@ describe("Connection", () => {
         return new Promise( function(resolve, reject) {
             Apis.instance(default_api, true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
-                assert(coreAsset === "DST");
+                assert(coreAsset === "BTS");
                 resolve();
             }).catch(reject)
         });
@@ -24,7 +24,7 @@ describe("Connection", () => {
 
     it("Connect to Testnet", function() {
         return new Promise( function(resolve, reject) {
-            Apis.instance("ws://163.172.142.178:8839", true).init_promise.then(function (result) {
+            Apis.instance("wss://node.testnet.bitshares.eu", true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
                 assert(coreAsset === "TEST");
                 resolve();

@@ -1,28 +1,49 @@
 import assert from "assert";
 import { Manager, Apis } from "../lib";
 
-var defaultUrl = "ws://163.172.142.178:8839";
+var defaultUrl = "wss://eu.nodes.bitshares.ws";
 
 var faultyNodeList = [
-    {url: "ws://163.172.142.178:8839", location: "Nuremberg, Germany"},
-    {url: "ws://127.0.0.1:8091", location: "Hangzhou, China"}
+    {url: "wss://bitsqsdqsdhares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bitazdazdshares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bitshaazdzares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bit.btzadazdsabc.org/ws", location: "Hong Kong"},
+    {url: "ws://127.0.0.1:8091", location: "Hangzhou, China"},
+    {url: "wss://bitshares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://secure.freedomledger.com/ws", location: "Toronto, Canada"},
+    {url: "wss://node.testnet.bitshares.eu", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var noWorkingNodes = [
-    {url: "ws://163.172.142.178:8839", location: "Nuremberg, Germany"},
-    {url: "ws://127.0.0.1:8091", location: "Hangzhou, China"}
+    {url: "wss://bitsqsdqsdhares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bitazdazdshares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bitshaazdzares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bit.btzadazdsabc.org/ws", location: "Hong Kong"},
+    {url: "ws://127.23230.0.1:8091", location: "Hangzhou, China"},
+    {url: "wss://bitshasdares.dacplay.org:8089/ws", location:  "Hangzhou, China"},
+    {url: "wss://secuasdre.freedomledger.com/ws", location: "Toronto, Canada"},
+    {url: "wss://testnet.bitshares.eu/wqsdsqs", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var goodNodeList = [
-    {url: "ws://163.172.142.178:8839", location: "Nuremberg, Germany"},
-    {url: "ws://127.0.0.1:8091", location: "Hangzhou, China"}
+    {url: "wss://bitshares.openledger.info/ws", location: "Nuremberg, Germany"},
+    {url: "wss://bit.btsabc.org/ws", location: "Hong Kong"},
+    {url: "wss://bts.transwiser.com/ws", location: "Hangzhou, China"},
+    {url: "wss://bitshares.dacplay.org:8089/ws", location:  "Hangzhou, China"},
+    {url: "wss://openledger.hk/ws", location: "Hong Kong"},
+    {url: "wss://secure.freedomledger.com/ws", location: "Toronto, Canada"},
+    {url: "wss://node.testnet.bitshares.eu", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var fullNodeList = [
+    {
+        url: "wss://fake.automatic-selection.com",
+        location: {translate: "settings.api_closest"}
+    },
     {url: "ws://127.0.0.1:8090", location: "Locally hosted"},
     {
-        url: "ws://163.172.142.178:8839", 
-        location: "Nuremberg, Germany"
+        url: "wss://eu.nodes.bitshares.ws",
+        location: "Central Europe - BitShares Infrastructure Program"
     },
     // Testnet
     {
@@ -51,7 +72,7 @@ describe("Connection Manager", function() {
     });
 
     it("Instantiates with orders api", function() {
-        let man = new Manager({url: "ws://163.172.142.178:8839", urls: [], optionalApis: {enableOrders: true}});
+        let man = new Manager({url: "wss://eu.nodes.bitshares.ws", urls: [], optionalApis: {enableOrders: true}});
         return new Promise( function(resolve, reject) {
             man.connect().then(() => {
                 assert(!!Apis.instance().orders_api());
@@ -74,7 +95,7 @@ describe("Connection Manager", function() {
         let man = new Manager({url: "ws://127.0.0.1:8092", urls: faultyNodeList.map(a => a.url)});
         return new Promise( function(resolve, reject) {
             man.connectWithFallback().then(function() {
-                assert.equal(man.url, "ws://163.172.142.178:8839");
+                assert.equal(man.url, "wss://bitshares.openledger.info/ws");
                 resolve();
             })
             .catch(reject)
@@ -110,9 +131,10 @@ describe("Connection Manager", function() {
     it("Can automatically fallback when closed", function() {
         this.timeout(20000);
         let man = new Manager({
-            url: "ws://163.172.142.178:8839",
+            url: "wss://eu.nodes.bitshares.ws",
             urls: ([
-                "ws://163.172.142.178:8839",
+                "wss://eu.nodes.bitshares.ws",
+                "wss://bitshares.openledger.info/ws"
             ]),
             autoFallback: true
         });
@@ -139,9 +161,10 @@ describe("Connection Manager", function() {
         return new Promise( function(resolve, reject) {
 
         let man = new Manager({
-            url: "ws://163.172.142.178:8839",
+            url: "wss://eu.nodes.bitshares.ws",
             urls: ([
-                "ws://163.172.142.178:8839",
+                "wss://eu.nodes.bitshares.ws",
+                "wss://eu.openledger.info/ws"
             ]),
             closeCb: function() {
                 resolve();
@@ -166,7 +189,7 @@ describe("Connection Manager", function() {
 
     it("Checks connections for url and urls", function() {
         this.timeout(20000);
-        let man = new Manager({url: "ws://163.172.142.178:8839", urls: ["wss://bts.open.icowallet.net/ws"]});
+        let man = new Manager({url: "wss://eu.nodes.bitshares.ws", urls: ["wss://bts.open.icowallet.net/ws"]});
         return new Promise( function(resolve, reject) {
             man.checkConnections().then((latencies => {
                 assert.equal(Object.keys(latencies).length, 2);
